@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backstage
+  labels:
+    app: backstage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backstage
+  template:
+    metadata:
+      labels:
+        app: backstage
+    spec:
+      containers:
+        - name: backstage
+          image: <tu-imagen-docker-de-backstage>  # Cambia esto con la imagen de Backstage que hayas creado.
+          ports:
+            - containerPort: 7000
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: BACKSTAGE_PORT
+              value: "7000"
+          volumeMounts:
+            - name: backstage-data
+              mountPath: /app/config  
+      volumes:
+        - name: backstage-data
+          emptyDir: {}
