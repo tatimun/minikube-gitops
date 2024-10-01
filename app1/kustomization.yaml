@@ -1,0 +1,6 @@
+# app1/kustomization.yaml
+resources:
+  - ../base  # Hereda la configuración base
+
+patchesStrategicMerge:
+  - patches.yaml  # Aplica los parches específicos de app1
